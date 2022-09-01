@@ -23,10 +23,42 @@ function applistelementcreate(jsondata){
                 <img src="./assets/img/unk.png" alt="">
             </div>
             <div class="app-name">${item.title}</div>
-            <button class="btn btn-success">Add List</button>
+            <button onclick="addSelectedList('${item.title}')" class="btn btn-success">Add List</button>
         </div>
     </div>`
     });
     applistnode.innerHTML = content;
 
 }
+
+
+function addSelectedList(itemName){
+const selectedList = document.querySelector("#selectedAppListEl");
+const newLink = document.createElement("li");
+newLink.className="appListLi";
+newLink.style.margin = "15px";
+selectedList.appendChild(newLink);
+newLink.appendChild(document.createTextNode(itemName));
+const elementBtn = document.createElement("button");
+elementBtn.className="btn btn-sm btn-danger";
+
+elementBtn.appendChild(document.createTextNode("clear text"));
+elementBtn.style.margin="10px";
+newLink.appendChild(elementBtn);
+
+}
+
+
+
+const deleteElement = document.querySelector("#btnClear");
+deleteElement.addEventListener("click",deleteElementLi);
+
+function deleteElementLi() {
+    const appListLi = document.querySelector(".appListLi");
+    appListLi.remove();
+
+
+}
+
+
+
